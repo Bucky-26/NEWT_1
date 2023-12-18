@@ -1,0 +1,16 @@
+{
+  "note": "reminder Dont Change the Name in Bot Developer or the bot not run again",
+  "prefix": "-",
+  "Bot-Name": "NEWT-AI [ NEWT AI ]",
+  "Bot-Version": "1.0.2",
+  "BotDeveloper": "ADONIS JR. S SANCHEZ",
+  "botOperator": "",
+  "autogreet": false,
+  "botAdmin": [
+    "100033855186220",
+    "213213"
+  ],
+  "maintenance": {
+    "enable": false
+  }
+}

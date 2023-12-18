@@ -1,0 +1,36 @@
+{
+  "name": "NEWT-AI",
+  "version": "2.0.0.1",
+  "description": "Simple OpenSource ChatBot on Messenger",
+  "main": "index.js",
+  "script":{
+    "start":"nodemon index.js"
+  },
+  "dependencies": {
+    "@picovoice/leopard-node": "^1.2.0",
+    "axios": "^1.6.0",
+    "body-parser": "^1.20.2",
+    "colors": "^1.4.0",
+    "express": "^4.18.2",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.1.1",
+    "gradient-string": "^2.0.2",
+    "is-hexcolor": "^1.0.0",
+    "luxon": "^3.4.3",
+    "moment-timezone": "^0.5.43",
+    "node-schedule": "^2.1.1",
+    "nodemon": "^3.0.1",
+    "npmlog": "^7.0.1",
+    "ping": "^0.4.4",
+    "request": "^2.88.2",
+    "yt-search": "^2.10.4",
+    "ytdl-core": "^4.11.5"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "pm2 start index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
