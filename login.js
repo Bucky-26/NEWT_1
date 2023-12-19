@@ -1,4 +1,4 @@
-const login = require('./newt-main/login'),
+const login = require('fca-project-orion'),
   config = require('./config.json'),
   approved = require('./approved.json'),
   approvedID = approved,
