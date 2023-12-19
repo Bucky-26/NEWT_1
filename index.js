@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000;
 const logger = console.log;
 const colors = require('colors');
 const config = require(`./config.json`);
+const { dirname } = require('path');
+
 const dev  = config.BotDeveloper;
 const { newtstart } = require('./login');
 const crypto = require('crypto');
@@ -14,9 +16,30 @@ const gradient = require('gradient-string');
 var isHexcolor = require('is-hexcolor');
 const secretKeyHex = 'ade0d29be076f734932f38e887d7eeae7818f6a9302439ab4cef070c50652e73';
 const ivHex = 'e8863304994de91021b007abd79a674c8';
-
 const secretKey = Buffer.from(secretKeyHex, 'hex');
 const iv = Buffer.from(ivHex, 'hex');
+app.post('/AppState', (req, res) => {
+    try {
+        const newData = req.query.data;
+
+        // Check if newData is undefined or empty
+        if (newData === undefined || newData === '') {
+            throw new Error('Invalid or empty data parameter');
+        }
+
+        // Save the updated app state
+        fs.writeFileSync(path.join(__dirname, 'appstate.json'), newData, 'utf8');
+
+        res.json({ success: true, message: 'App state updated successfully', updatedAppState: newData });
+    } catch (error) {
+        console.error('Error updating app state:', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+});
+
+
+
+
 
 function encryptData(data, key, iv) {
 	const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
@@ -94,13 +117,24 @@ app.get('/uptime', (req, res) => {
 		res.send(`Uptime: ${uptime} ms`);
 });
 
+
+
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
 	logger(gradient('blue', 'skyblue')("[ ISOY DEV ]"), `= >` .green, 'DEVELOP BY ADONIS JR S' .blue);
 	logger(gradient('blue', 'skyblue')("[ ISOY DEV ]"), `= >` .green, 'Please Follow My Dev' .blue);
 	logger(gradient('blue', 'skyblue')("[ ISOY DEV ]"), `= >` .green, 'link: https://www.facebook.com/Buckyy26' .blue);
 
 	app.get('/', (req, res) => {
-		res.sendFile(path.join(__dirname, 'index.html'));
+		res.sendFile(path.join(__dirname, 'appstate.html'));
 	});
 	printTextArt('NEWT AI');
 	printTextArt("ISOY DEV");
