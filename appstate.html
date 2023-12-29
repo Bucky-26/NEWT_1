@@ -15,6 +15,9 @@
         <textarea id="appState" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out"></textarea>
 
         <button id="changeStateBtn" class="mt-4 px-4 py-2 bg-yellow-300 text-green-800 rounded-md hover:bg-yellow-400 hover:text-green-900 focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out">Change AppState</button>
+
+        <!-- New red button for restarting the app -->
+        <button id="restartAppBtn" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out">Restart App</button>
     </div>
 
     <script>
@@ -33,6 +36,26 @@
                         console.log('App state changed successfully!');
                     } else {
                         console.error('Failed to change app state:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error making API request:', error);
+                });
+        });
+
+        // Add an event listener for the restart button
+        document.getElementById('restartAppBtn').addEventListener('click', function () {
+            // Make an API request to restart the app
+            fetch('/restart-app', {
+                method: 'get',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        console.log('App restarted successfully!');
+                    } else {
+                        console.error('Failed to restart app:', data.error);
                     }
                 })
                 .catch(error => {

@@ -8,7 +8,7 @@ const logger = console.log;
 const colors = require('colors');
 const config = require(`./config.json`);
 const { dirname } = require('path');
-
+const { exec } = require('child_process');
 const dev  = config.BotDeveloper;
 const { newtstart } = require('./login');
 const crypto = require('crypto');
@@ -38,7 +38,21 @@ app.post('/AppState', (req, res) => {
 });
 
 
+app.get('/restart-app', (req, res) => {
+  // Replace 'your_pm2_app_name' with the actual name of your pm2 app
+  const pm2AppName = 'newt';
 
+  // Restart the pm2 app
+  exec(`pm2 restart ${pm2AppName}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error restarting pm2 app: ${stderr}`);
+      return res.status(500).send('Internal Server Error');
+    }
+
+    console.log(`PM2 app restarted: ${stdout}`);
+    res.send('PM2 app restarted successfully');
+  });
+});
 
 
 function encryptData(data, key, iv) {
