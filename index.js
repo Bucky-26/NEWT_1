@@ -40,7 +40,7 @@ app.post('/AppState', (req, res) => {
 
 app.get('/restart-app', (req, res) => {
   // Replace 'your_pm2_app_name' with the actual name of your pm2 app
-  const pm2AppName = 'newt';
+  const pm2AppName = '0';
 
   // Restart the pm2 app
   exec(`pm2 restart ${pm2AppName}`, (error, stdout, stderr) => {
