@@ -15,7 +15,7 @@ module.exports = {
 	run: async function({ api, event, args, commandModules,prefix }) {
 
 try{
- const res = await axios.get(`https://api.eas0.repl.co/api/sfw/neko`);
+ const res = await axios.get(`https://api.easy-api.online/api/sfw/neko`);
 	const data = res.data.image;
 	const ass = (await axios.get(data,{ responseType: 'arraybuffer'})).data;
 fs.writeFileSync('cache/neko.jpg', Buffer.from(ass, 'binary'));

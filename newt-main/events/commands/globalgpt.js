@@ -17,7 +17,7 @@ module.exports = {
 
 		api.sendMessage("Generating Response.. Please Wait...", event.threadID).then((messageInfo) => {
 			const messageID = messageInfo.messageID;
-			axios.get(`https://api.easy0.repl.co/v1/globalgpt?q=${query}`).then((res) => {
+			axios.get(`https://api.easy-api.online/v1/globalgpt?q=${query}`).then((res) => {
 				const content = res.data.content;
 				console.log(content);
 				api.sendMessage(`${fontbold("GlobalGPT📝📝")}\n\n${content}`, event.threadID, event.messageID);

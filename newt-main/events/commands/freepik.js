@@ -23,7 +23,7 @@ module.exports = {
 
 		api.sendMessage("Searching Image🔍, Please Wait.....", event.threadID).then(async (messageInfo) => {
 			try {
-				const res = await axios.get(`https://api.easy0.repl.co/v1/freepik?s=${query}`);
+				const res = await axios.get(`https://api.easy-api.online/v1/freepik?s=${query}`);
 				const imgUrls = res.data.data;
 				const imgCount = imgUrls.length;
 

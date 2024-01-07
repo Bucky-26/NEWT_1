@@ -29,7 +29,7 @@ module.exports = {
 
         axios
           .get(
-            `https://api.easy0.repl.co/api/vicuna?q=${encodeURIComponent(
+            `https://easy-api.online/api/vicuna?q=${encodeURIComponent(
               question,
             )}&api=https://newtai.bgfxd.repl.co`,
           )

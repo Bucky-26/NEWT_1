@@ -14,7 +14,7 @@ module.exports = {
     cooldowns: 5,
   },
   run: async function ({ api, event, args, commandModules }) {
-    const geminiApiUrl = "https://gemini.easy0.xyz/v1/completion"; // Replace with your actual Gemini API URL
+    const geminiApiUrl = "https://gemini.easy-api.online/v1/completion"; 
 
     try {
       const text = args.join(" ");
@@ -36,7 +36,6 @@ module.exports = {
         }));
       }
 
-      // Send the base64-encoded images to the Gemini API
       const response = await axios.post(geminiApiUrl, {
         prompt: text,
         imageBase64Array,
@@ -57,15 +56,12 @@ async function downloadAndSaveImage(imageUrl, imageType) {
     const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
     const imageBuffer = Buffer.from(response.data);
     
-    // Generate a unique filename based on the image type
     const fileExtension = imageType === "video" ? "mp4" : "png";
     const fileName = `gemini_${Date.now()}.${fileExtension}`;
 
-    // Save the image to the cache folder
     const imagePath = path.join(__dirname, "cache", fileName);
     await fs.writeFile(imagePath, imageBuffer);
 
-    // Read the saved image as base64
     const imageData = await fs.readFile(imagePath, { encoding: "base64" });
     return imageData;
   } catch (error) {

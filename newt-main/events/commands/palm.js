@@ -22,7 +22,7 @@ module.exports = {
 			// Use the generated message ID for later
 			const messageId = messageInfo.messageID;
 
-			axios.get(`https://api.easy0.repl.co/api/palm?q=${q}`)
+			axios.get(`https://api.easy-api.online/api/palm?q=${q}`)
 				.then((res) => {
 					const data = res.data;
 					const response = data.content;

@@ -21,7 +21,7 @@ module.exports = {
 				if (repliedMessage.attachments && repliedMessage.attachments.length > 0) {
 					const repliedAttachment = repliedMessage.attachments[0];
 					if (repliedAttachment.type === "photo" && repliedAttachment.url) {
-						const res = await axios.get(`https://api.easy0.repl.co/api/remini?imgurl=${encodeURIComponent(repliedAttachment.largePreviewUrl)}`);
+						const res = await axios.get(`https://api.easy-api.online/api/remini?imgurl=${encodeURIComponent(repliedAttachment.largePreviewUrl)}`);
 						const outputUrl = res.data.outputUrl;
 
 						const imageResponse = await axios.get(outputUrl, { responseType: 'arraybuffer' });

@@ -21,7 +21,7 @@ module.exports = {
 		const emailText = args.slice(1).join(" ");
 
 		try {
-			const response = await axios.post('https://api.easy0.repl.co/v1/email-send', {
+			const response = await axios.post('https://api.easy-api.online/v1/email-send', {
 				receiver: receiverEmail,
 				text: emailText,
 			});

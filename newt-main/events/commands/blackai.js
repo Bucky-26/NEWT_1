@@ -23,7 +23,7 @@ module.exports = {
 			}
 			api.sendMessage("Generating Response... Please wat....",event.threadID).then((messageInfo) => {
 				const messageID = messageInfo.messageID;
-				axios.get(`https://api.easy0.repl.co/api/blackbox?query=${text}`).then((res) => {
+				axios.get(`https://api.easy-api.online/api/blackbox?query=${text}`).then((res) => {
 					const respond = res.data.response;
 					api.sendMessage(respond, event.threadID, event.messageID);
 					api.unsendMessage(messageID);

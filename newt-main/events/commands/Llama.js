@@ -39,7 +39,7 @@ module.exports = {
 							const filename = attachment.filename;
 						
 
-								var ress = await axios.get(`https://api.easy0.repl.co/api/llama?p=${encodeURIComponent(text)}&img=${encodeURIComponent(largePreviewUrl)}`);
+								var ress = await axios.get(`https://api.easy-api.online/api/llama?p=${encodeURIComponent(text)}&img=${encodeURIComponent(largePreviewUrl)}`);
 								var data = ress.data.content;
 										api.sendMessage(data,event.threadID,event.messageID);
 						return false
@@ -52,7 +52,7 @@ module.exports = {
 
 		
 
-				var res = await axios.get(`https://api.easy0.repl.co/api/llama?p=${encodeURIComponent(text)}`);
+				var res = await axios.get(`https://api.easy-api.online/api/llama?p=${encodeURIComponent(text)}`);
 				var data = res.data.content;
 						api.sendMessage(data,event.threadID,event.messageID);
 			

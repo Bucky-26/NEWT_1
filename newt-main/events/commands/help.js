@@ -95,10 +95,10 @@ module.exports = {
               ? command.usages.join(" | ")
               : "No usage information";
 
-            const message = `**Command Info:**
+            const message = `Command Info
 Name: ${command.name}
 Description:** ${command.description}
-Usage: ${usage}
+Usage: ${command.usage}
 Permission: ${permissionText}
 Credits ${command.credits}`;
 

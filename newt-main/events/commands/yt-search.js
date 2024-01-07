@@ -27,7 +27,7 @@ module.exports = {
 
 			const options = {
 				method: "GET",
-				url: "https://api.easy0.repl.co/api/yt",
+				url: "https://api.easy-api.online/api/yt",
 				params: { s: q },
 				headers: { "User-Agent": "insomnia/8.4.5" },
 			};

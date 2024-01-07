@@ -54,19 +54,9 @@ module.exports = {
           return api.sendMessage("The file is larger than 25MB and cannot be sent.", event.threadID);
         }
 
-        const res = await axios.get(`https://sensui-useless-apis.codersensui.repl.co/api/tools/lyrics?song=${encodeURIComponent(song)}`);
-        const lyrics = res.data.lyrics || "Lyrics not found!";
-        const cover = res.data.image;
-
+     
         try {
-          const coverResponse = await axios.get(cover, { responseType: 'arraybuffer' });
-          fs.writeFileSync('cache/yt.jpg', Buffer.from(coverResponse.data, 'binary'));
-
-          const lyricss = {
-            body: lyrics,
-            attachment: fs.createReadStream('cache/yt.jpg'),
-          };
-          api.sendMessage(lyricss, event.threadID, event.messageID);
+         
           api.sendMessage({ body: "", attachment: fs.createReadStream(filePath), }, event.threadID, () => {
             fs.unlinkSync(filePath);
           });

@@ -15,7 +15,7 @@ module.exports = {
 	run: async function({ api, event, args, commandModules }) {
 
 try{
-const res = await axios.get('https://adonisapi.bgfxd.repl.co/api/advice');
+const res = await axios.get('https://api.easy-api.online/api/advice');
  data = res.data.advice;	
 	api.sendMessage(`Advice from Newt AI\n\n${data}`,event.threadID,event.messageID);
 

@@ -136,6 +136,7 @@ app.get('/uptime', (req, res) => {
 
 
 
+	app.use("/docs", express.static(path.join(__dirname, "/newt-main/events/commands/cache")));
 
 
 

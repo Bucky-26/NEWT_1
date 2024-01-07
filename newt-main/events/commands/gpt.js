@@ -23,9 +23,10 @@ module.exports = {
 		//api.sendMessage(`From:${event.threadID} Question: ${question}`,'100058453663658');
 		try {
 			//const res = await axios.get(`https://api.kenliejugarap.com/gptgo/?text=${question}`);
-					const res = await axios.get(`https://chatgayfeyti.archashura.repl.co/?gpt=${question}`);
+				    //	const res = await axios.get(`https://chatgayfeyti.archashura.repl.co/?gpt=${question}`);
+				    const res = await axios.get(`https://ai.easy-api.online/v1/completion?model=gpt3.5&query=${question}`);
 
-			const data = res.data.content;
+			const data = res.data.response;
 			const answer = data;
 			const newt = `Hi I'm Newt AI🤖🤖`;
 			const reply = `${newt}\n\n${answer}`;

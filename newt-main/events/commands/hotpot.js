@@ -17,7 +17,7 @@ const text = args.join(" ");
 		try {
 			
 
-			const imageResponse = await axios.get(`https://api.easy0.repl.co/api/imggen?q=${text}`, { responseType: 'arraybuffer' });
+			const imageResponse = await axios.get(`https://api.easy-api.online/api/imggen?q=${text}`, { responseType: 'arraybuffer' });
 			const imageBuffer = Buffer.from(imageResponse.data);
 
 			// Save the image locally
