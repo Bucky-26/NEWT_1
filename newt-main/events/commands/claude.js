@@ -29,7 +29,7 @@ module.exports = {
 
         axios
           .get(
-            `https://ai.easy-api.repl.co/api/mistral?query=${encodeURIComponent(
+            `https://ai.ea-sy.tech/api/mistral?query=${encodeURIComponent(
               question,
             )}&api=https://newtai.bgfxd.repl.co`,
           )

@@ -6,9 +6,9 @@ module.exports = {
 		usePrefix: true,
 		description: "Advice",
 		permission: 0,  //// 0|1|2   -0 all user  - 1 for admin and 3 for dev 
-	credits: "OPERATOR ISOY",
+	credits: "EASY TECH:ISOY DEV",
 	description: "",
-	commandCategory: "group",
+	commandCategory: "GROUP",
 	usages: "",
 	cooldowns: 5,
 	},

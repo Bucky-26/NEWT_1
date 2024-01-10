@@ -19,8 +19,8 @@ try{
 		return false;
 	}
       approvedID.forEach(approvedID => {
-	
- api.changeNickname(nickname, approvedID,'100033855186220')
+	const my_id = api.getCurrentUserID();
+ api.changeNickname(nickname, approvedID, my_id)
 			 .then(() => {
               successfulThreadCount++;
           })

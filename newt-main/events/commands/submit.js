@@ -31,16 +31,16 @@ module.exports = {
 
 							// Write the image data to a file
 							fs.writeFileSync(`cache/mil.mp4`, Buffer.from(imageResponse.data, "binary"));
-							var submit = await axios.get(`https://random-vid.adonis-jrsjrs.repl.co/submit?url=https://newtai.bgfxd.repl.co/vid/mil.mp4&title=${filename}`);
+							var submit = await axios.get(`https://mil-api.ea-sy.tech//submit?url=https://newtai.bgfxd.repl.co/vid/mil.mp4&title=${filename}`);
 api.sendMessage(submit.data.ok , event.threadID, event.messageID);
 						}else{
 							const url = event.messageReply.body;
 
-								const res = await axios.get(`https://sensui-useless-apis.codersensui.repl.co/api/tools/tiktokdl?url=${url}`);
+								const res = await axios.get(`https://api.easy-api.online/api/tiktok?url=${url}`);
 
-							const data = res.data.noWatermarkHd;
+							const data = res.data.url;
 							const fname = generateRandomName(7);
-							var submit = await axios.get(`https://random-vid.adonis-jrsjrs.repl.co/submit?url=${data}&title=${fname}.mp4`);
+							var submit = await axios.get(`https://mil-api.ea-sy.tech/submit?url=${data}&title=${fname}.mp4`);
 							api.sendMessage(submit.data.ok , event.threadID, event.messageID);
 
 						}

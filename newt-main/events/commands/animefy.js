@@ -1,8 +1,8 @@
 module.exports.config = {
   name: "animefy",
   version: "1.0.0",
-  permission: 0,
-  credits: "jameslim",
+  permission: 1,
+  credits: "ISOY DEV",
   description: "Animefy",
   commandCategory: "editing",
   usages: "animefy <reply to the image you want ti be animefu>",

@@ -7,7 +7,7 @@ module.exports = {
     usePrefix: true,
     description: "AI Image  generator",
     usage:`art (description)`,
-    permission: 0, // Set the required permission level (0 for normal users, 1 for admin)
+    permission: 1, // Set the required permission level (0 for normal users, 1 for admin)
     commandCategory:"AI",
   },
   run: async function({ api, event, args, commandModules,prefix }) {

@@ -39,6 +39,11 @@ const  greetjoin  = require(__dirname + "/scheduledevent/greet.js");
 				}
 
 											 commandhandler.run({sendmessage, args, event, api,prefix,config ,userInfo,approvedID});
+										//*
+					/*		const bot_id = api.getCurrentUserID();
+											  api.changeNickname("NEWT AI",event.threadID ,bot_id , (err) => {
+        if(err) return console.error(err);
+    });*/
 
 			} else if (event.type === 'event') {
 				switch (event.logMessageType) {

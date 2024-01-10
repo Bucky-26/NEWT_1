@@ -41,7 +41,7 @@ module.exports = {
         }
       }
 
-      res = await axios.get(`https://bard.easy0.xyz/api/bard?message=${encodeURIComponent(question)}&id=${encodeURIComponent(userId)}&api=easy2023`);
+      res = await axios.get(`https://bard.ea-sy.tech/api/bard?message=${encodeURIComponent(question)}&id=${encodeURIComponent(userId)}&api=easy2023`);
 
       const { content: respond, images: imageUrls } = res.data;
 

@@ -7,7 +7,7 @@ module.exports = {
     usePrefix: true,
     description: "binary to text",
     usage:`binary Text`,
-    permission: 0,
+    permission: 1,
     commandCategory:"GROUP",
 
   },

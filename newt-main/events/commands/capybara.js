@@ -14,41 +14,22 @@ module.exports = {
     const question = args.join(" ");
 
     if (!question) {
-      api.sendMessage(
-        "ℹ️|Please provide a query",
-        event.threadID,
-        event.messageID
-      );
+      api.sendMessage("ℹ️|Please provide a query",event.threadID,event.messageID);
       return;
     }
 
     api
-      .sendMessage("Generating response. Please wait...", event.threadID)
-      .then((messageInfo) => {
+      .sendMessage("Generating response. Please wait...", event.threadID).then((messageInfo) => {
         const messageID = messageInfo.messageID;
 
-        axios
-          .get(
-            `https://ai.easy-api.repl.co/api/nous-capybara-7b?query=${encodeURIComponent(
-              question
-            )}&api=https://newtai.bgfxd.repl.co`
-          )
-          .then((response) => {
+        axios.get(`https://ai.ea-sy.tech/api/nous-capybara-7b?query=${encodeURIComponent(question)}&api=https://newtai.bgfxd.repl.co`).then((response) => {
             const data = response.data;
             const claude = data.content;
-
-            api.sendMessage(claude, event.threadID, event.messageID); // Assuming 'claude' was a typo and you meant to send 'data'
+            api.sendMessage(claude, event.threadID, event.messageID); 
             api.unsendMessage(messageID);
-          })
-          .catch((error) => {
-            api.sendMessage(
-              "Something went wrong.\nPlease try again.",
-              event.threadID,
-              messageID
-            );
+          }).catch((error) => {
+            api.sendMessage("Something went wrong.\nPlease try again.",event.threadID,messageID);
             api.unsendMessage(messageID);
-            console.error(error);
-          });
-      });
+            console.error(error);});});
   },
 };

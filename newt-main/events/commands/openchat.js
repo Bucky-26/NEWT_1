@@ -22,7 +22,7 @@ module.exports = {
 		api.sendMessage('Generating response. Please wait...', event.threadID).then((messageInfo) => {
 			const messageID = messageInfo.messageID;
 
-			axios.get(`https://ai.easy-api.repl.co/api/openchat?query=${encodeURIComponent(question)}&api=https://newtai.bgfxd.repl.co`)
+			axios.get(`https://ai.ea-sy.tech/api/openchat?query=${encodeURIComponent(question)}&api=https://newtai.bgfxd.repl.co`)
 				.then((response) => {
 					const data = response.data;
 					const claude = data.content;

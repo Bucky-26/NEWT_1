@@ -21,7 +21,7 @@ module.exports = {
 		api.sendMessage('Generating Response Please Wait', event.threadID, event.messageID);
 
 		try {
-			const response = await axios.get(`https://ai.easy-api.repl.co//api/zephyr?query=${encodeURIComponent(question)}&api=https://newtai.bgfxd.repl.co`);
+			const response = await axios.get(`https://ai.ea-sy.tech/api/zephyr?query=${encodeURIComponent(question)}&api=https://newtai.bgfxd.repl.co`);
 			const data = response.data;
 			const claude = data.content;
 			//api.sendTypingIndicator(event.threadID, =>{
