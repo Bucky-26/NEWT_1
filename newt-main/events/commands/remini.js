@@ -6,7 +6,7 @@ module.exports = {
 		name: "remini",
 		usePrefix: true,
 		description: "Remini uses innovative, state-of-the-art AI technology to transform your old photos into HD masterpieces.",
-		permission: 0, // 0: all users, 1: admin, 3: dev
+		permission: 1, // 0: all users, 1: admin, 3: dev
 		credits: "OPERATOR ISOY",
 		commandCategory: "group",
 		usages: "remini  note:reply to the image you want to enhance",

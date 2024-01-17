@@ -14,7 +14,7 @@ module.exports = {
   },
   run: async function ({ api, event, args, commandModules }) {
     const _url_tiktok = "https://api.easy-api.online/api/tiktok?url=";
-    const _url_fb = "https://api.easy-api.online/api/fbdl?q=";
+    const _url_fb = "https://api.easy-api.online/v2/fbdl";
     const _url_yt = "https://api.easy-api.online/api/ytdl?url=";
     const _url = args.join(" ");
 
@@ -23,14 +23,15 @@ module.exports = {
         const tiktokPattern = /^https:\/\/vt\.tiktok\.com\//;
         const facebookPattern = /^https:\/\/www\.facebook\.com\//;
         const fbWatchPattern = /^https:\/\/fb\.watch\//;
+        const fbweb = /^https:\/\/web\.facebook\.com\//;
         const youtubePattern = /^https:\/\/youtu\.be\//;
 
         if (tiktokPattern.test(url)) {
-          return `https://api.easy-api.online/api/tiktok?url=${encodeURIComponent(url)}`;
-        } else if (facebookPattern.test(url) || fbWatchPattern.test(url)) {
-          return `https://api.easy-api.online/api/fbdl?q=${encodeURIComponent(url)}`;
+          return `${_url_tiktok}${encodeURIComponent(url)}`;
+        } else if (facebookPattern.test(url) || fbWatchPattern.test(url) ||fbweb.test(url)) {
+          return _url_fb;
         } else if (youtubePattern.test(url)) {
-          return `https://api.easy-api.online/api/ytdl?url=${encodeURIComponent(url)}`;
+          return `${_url_yt}${encodeURIComponent(url)}`;
         } else {
           return null;
         }
@@ -43,7 +44,16 @@ module.exports = {
         return;
       }
 
-      const download = await axios.get(apiUrl);
+      let download;
+
+      if (apiUrl === _url_fb) {
+        // Use POST request for fbdl
+        download = await axios.post(apiUrl, { url: _url });
+      } else {
+        // Use GET request for other APIs
+        download = await axios.get(apiUrl);
+      }
+
       const vidurl = download.data.url;
       const vid = (await axios.get(vidurl, { responseType: 'arraybuffer' })).data;
 

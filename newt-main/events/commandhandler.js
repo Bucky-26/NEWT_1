@@ -89,15 +89,7 @@ function fontbold(text) {
 module.exports = { fontbold };
 initializeCommands(fontbold);
 module.exports = {
-  run: async function ({
-    sendmessage,
-    args,
-    event,
-    api,
-    prefix,
-    config,
-    approvedID,
-  }) {
+  run: async function ({sendmessage,args,event,api,prefix,config,approvedID,banuser}) {
     const input = event.body.trim();
 if(!approvedID.includes(event.threadID) && !config.botAdmin.includes(event.senderID)){
   return false
@@ -115,10 +107,11 @@ if(!approvedID.includes(event.threadID) && !config.botAdmin.includes(event.sende
       const command = commands[commandName];
       if (event.body.startsWith(prefix)) {
         if (command) {
-          if (
-            config.maintenance.enable &&
-            !config.botAdmin.includes(event.senderID)
-          ) {
+            if(banuser.includes(event.senderID)){ 
+                api.sendMessage('You Are Not Allowed to you use the BOT',event.threadID,event.messageID);
+                return false;
+            }
+          if (config.maintenance.enable && !config.botAdmin.includes(event.senderID)) {
             api.sendMessage(
               "The BOT is Under Maintenance.\nTo Serve You Better\n Sorry for the inconvenience.",
               event.threadID
@@ -127,25 +120,13 @@ if(!approvedID.includes(event.threadID) && !config.botAdmin.includes(event.sende
           }
           const userPermission = config.botAdmin.includes(user) ? 1 : 0;
           if (!command.config.usePrefix && event.body.startsWith(prefix)) {
-            api.sendMessage(
-              "This Command didn't need a prefix",
-              event.threadID,
-              event.messageID
-            );
+            
+            api.sendMessage("This Command didn't need a prefix",event.threadID,event.messageID);
+            
             return false;
           }
           if (userPermission >= command.config.permission) {
-            command.run({
-              sendmessage,
-              api,
-              event,
-              args,
-              commandModules: commands,
-              config,
-              approvedID,
-              fontbold,
-              prefix,
-            });
+            command.run({sendmessage,api,event,args,commandModules: commands,config,approvedID,fontbold,prefix,banuser});
           } else {
             api.sendMessage(
               "You do not have permission to use this command.",

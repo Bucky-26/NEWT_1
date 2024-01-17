@@ -10,7 +10,7 @@ module.exports = {
     commandCategory:"ADMIN",
 
   },
-  run: async function({ api, event, args, commandModules,banuser,ban }) {
+  run: async function({ api, event, args, commandModules,banuser }) {
 
 try{
   if (Object.keys(event.mentions).length === 0) {

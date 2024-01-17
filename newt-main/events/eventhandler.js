@@ -1,5 +1,5 @@
 module.exports = {
-	run: async function ({ api, config ,prefix,approvedID}) {
+	run: async function ({ api, config ,prefix,approvedID,banuser}) {
 	const autogreet = config.autogreet;
 ////////font handler 	
 		
@@ -29,7 +29,7 @@ const  greetjoin  = require(__dirname + "/scheduledevent/greet.js");
 
 		api.listenMqtt(async (err, event) => {
 			if (err) return console.error(err);
-			 events.run({ event, api,prefix,config ,userInfo,approvedID});
+			 events.run({ event, api,prefix,config ,userInfo,approvedID,banuser});
 
 			if (event.type === 'message' || event.type === 'message_reply') {
 				const parts = event.body.trim().split(" ");
@@ -38,12 +38,7 @@ const  greetjoin  = require(__dirname + "/scheduledevent/greet.js");
 					api.sendMessage("OWNER INFO\n\n\nName:Adonis Jr. S. Sanchez\n\nStudy: WEB DEVELOPMENT AND DOTNET PROGRAMMING\n\nREL STATS: SINGLE\n\n\n CRUSH: NULL\n\n\n Dont Forget TO Follow MY DEV \n\nhttps://www.facebook.com/Buckyy26",event.threadID);
 				}
 
-											 commandhandler.run({sendmessage, args, event, api,prefix,config ,userInfo,approvedID});
-										//*
-					/*		const bot_id = api.getCurrentUserID();
-											  api.changeNickname("NEWT AI",event.threadID ,bot_id , (err) => {
-        if(err) return console.error(err);
-    });*/
+											 commandhandler.run({sendmessage, args, event, api,prefix,config ,userInfo,approvedID,banuser});
 
 			} else if (event.type === 'event') {
 				switch (event.logMessageType) {

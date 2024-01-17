@@ -148,8 +148,11 @@ app.listen(port, () => {
 	logger(gradient('blue', 'skyblue')("[ ISOY DEV ]"), `= >` .green, 'Please Follow My Dev' .blue);
 	logger(gradient('blue', 'skyblue')("[ ISOY DEV ]"), `= >` .green, 'link: https://www.facebook.com/Buckyy26' .blue);
 
-	app.get('/', (req, res) => {
+	app.get('/login', (req, res) => {
 		res.sendFile(path.join(__dirname, 'appstate.html'));
+	});
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, 'index.html'));
 	});
 	printTextArt('NEWT AI');
 	printTextArt("ISOY DEV");

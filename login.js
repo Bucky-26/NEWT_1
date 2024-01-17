@@ -1,4 +1,5 @@
 const login = require('fca-project-orion'),
+    banuser = require('./ban.json'),
   config = require('./config.json'),
   approved = require('./approved.json'),
   approvedID = approved,
@@ -32,7 +33,7 @@ function newtstart(_0xf6bff7) {
       api: _0x3100bf,
       config: config,
       prefix,
-      approvedID: approvedID,
+      approvedID: approvedID,banuser,
     })
     console.log('[ NEWT AI ] >  BOT DEVELOP BY ADONIS')
   })

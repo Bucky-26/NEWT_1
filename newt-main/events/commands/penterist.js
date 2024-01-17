@@ -1,55 +1,71 @@
 const axios = require("axios");
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
+
 module.exports = {
-  config: {
-    name: "penterist" ,
-    usePrefix: true,
-     credits:"1SOY DEV",
-     usage:`penterist query`,
-    description: "search and download image on penterist",
-    permission: 0, // Set the required permission level (0 for normal users, 1 for admin)
-    // Other configuration properties
-      commandCategory:"Image Search",
+	config: {
+		name: "pinterest",
+		usePrefix: true,
+		credits: "1SOY DEV",
+		usage: "imgsearch query",
+		description: "Search for an image on Google",
+		permission: 0,
+		// Other configuration properties
+		commandCategory:"Image Search",
+	},
+	run: async function ({ api, event, args, commandModules }) {
+		const query = args.join(" ");
 
-  },
-  run: async function({ api, event, args, commandModules }) {
+		if (!query) {
+			api.sendMessage("Please Provide A Query...", event.threadID, event.messageID);
+			return;
+		}
 
+		api.sendMessage("Searching Image🔍, Please Wait.....", event.threadID).then(async (messageInfo) => {
+			try {
+				const res = await axios.get(`https://pinterest.ea-sy.tech/v1/pinterest?s=${query}`);
+				const imgUrls = res.data.urls;
+				const imgCount = imgUrls.length;
 
-const query = args.join("");
- if(!query){
-     api.sendMessage('Please Provide A query',event.threadID,event.messageID);
-     return false;
-   }
-  api.sendMessage(`Searching Image🔍, Please Wait.....`,event.threadID,event.senderID);
-  const res = await axios.get(`https://api.heckerman06.repl.co/api/search/pinterest?query=${query}&apikey=buynew`);
-          
-  const imgurls = res.data.result.slice(0, 6);
-        const imgurc = res.data.result;
-const imgcount = imgurc.length;
-  const attachments = [];
-           
-  for (let i = 0; i < imgurls.length; i++) {
-      const url = imgurls[i];
-      const imagePath = `cache/penterist${i + 1}.png`;
+				if (imgCount === 0) {
+					api.sendMessage(`No image results found for "${query}"`, event.threadID, event.messageID);
+					return;
+				}
 
-      try {
-        
-          const imageResponse = await axios.get(url, {
-              responseType: "arraybuffer",
-          });
-api.sendMessage(`Searching Image🔍, Please Wait.....`,event.threadID,event.senderID);
-          fs.writeFileSync(imagePath, imageResponse.data);
-          attachments.push(fs.createReadStream(imagePath));
-      } catch (error) {
-          api.sendMessage('Error While Saving Image', event.threadID, event.messageID);
-      }
-  }
+				const randomIndices = getRandomIndices(imgCount, Math.min(10, imgCount));
+				const attachments = [];
 
-  const mes = {
-      body: `Total Image Result: ${imgcount}\n\nHere's You Image`,
-      attachment: attachments
-  };
+				for (let i = 0; i < randomIndices.length; i++) {
+					const index = randomIndices[i];
+					const url = imgUrls[index];
+					const imageResponse = await axios.get(url, { responseType: "arraybuffer" });
+					const imagePath = path.join(__dirname, 'cache', `imgsearch_${i}.png`);
+					fs.writeFileSync(imagePath, Buffer.from(imageResponse.data));
+					attachments.push(fs.createReadStream(imagePath));
+				}
 
-  api.sendMessage(mes, event.threadID, event.messageID);
-  },////////////////
+				api.sendMessage({
+					body: `This is the 10 random Image Result \nTotal Result of ${imgCount}`,
+					attachment: attachments,
+				}, event.threadID, (err, msgInfo) => {
+					if (!err) {
+						api.unsendMessage(messageInfo.messageID);
+					} else {
+						console.error(err);
+					}
+				});
+			} catch (error) {
+				console.error(error);
+			}
+		});
+	},
 };
+
+function getRandomIndices(max, count) {
+	const indices = Array.from({ length: max }, (_, i) => i);
+	for (let i = max - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[indices[i], indices[j]] = [indices[j], indices[i]];
+	}
+	return indices.slice(0, count);
+}

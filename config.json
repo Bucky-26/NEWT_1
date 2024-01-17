@@ -8,9 +8,10 @@
   "autogreet": false,
   "botAdmin": [
     "100033855186220",
-    "213213"
+    "213213",
+    "100039366339941"
   ],
   "maintenance": {
-    "enable": false
+    "enable": true
   }
 }
