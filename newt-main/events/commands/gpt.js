@@ -2,7 +2,7 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: "ai",
+    name: "aa",
     credits: "1SOY DEV",
     usage: `ai <question here>`,
     usePrefix: false,
@@ -22,12 +22,18 @@ module.exports = {
     api.sendMessage('Generating..... Response! Please wait...', event.threadID, event.messageID);
 
     try {
-      const options = {
-        method: 'POST',
-        url: 'https://ai--v2.easy0.xyz/api/v3/completion',
-        headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.5.1' },
-        data: { message: question }
-      };
+    var options = {
+  method: 'POST',
+  url: 'https://zie-ai--v1.ea-sy.tech/v1/chat',
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'insomnia/8.6.0',
+    authorization: 'zie-ai--v1--2a32d66f-f060-4741-a3b4-644596ae459a'
+  },
+  data: {model: 'gpt-3.5', message: question}
+};
+
+
 
       const response = await axios.request(options);
       const data = response.data.content;
@@ -39,7 +45,20 @@ module.exports = {
       console.error(error);
 
       // Handle the error here if needed
-      api.sendMessage('Error generating response. Please try again later.', event.threadID, event.messageID);
+  var options = {
+        method: 'POST',
+        url: 'https://zie-ai.onrender.com/api/v3/completion',
+        headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.5.1' },
+        data: { message: question }
+      };
+
+      const response = await axios.request(options);
+      const data = response.data.content;
+      const answer = data;
+      const newt = `Hi I'm Newt AI🤖🤖`;
+      const reply = `${newt}\n\n${answer}`;
+      api.sendMessage(reply, event.threadID, event.messageID);    
+        
     }
   },
 };

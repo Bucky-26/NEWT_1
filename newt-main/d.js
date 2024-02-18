@@ -1,0 +1,1 @@
+const sd = `https://web.facebook.com/api/graphql/?av=100033855186220&__user=100033855186220&dpr=1.5&fb_api_req_friendly_name=FriendingCometFriendRequestsRootQuery&variables=%7B%22scale%22%3A1.5%7D&server_timestamps=true&doc_id=4851458921570237`

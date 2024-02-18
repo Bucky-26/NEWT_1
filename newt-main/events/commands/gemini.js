@@ -4,8 +4,8 @@ const path = require("path");
 
 module.exports = {
   config: {
-    name: "gemini",
-    usePrefix: true,
+    name: "ai",
+    usePrefix: false,
     description: "Get the URLs of the first two images when the user replies to an image.",
     permission: 0, // 0 for all users, 1 for admin, 2 for dev
     credits: "OPERATOR ISOY",

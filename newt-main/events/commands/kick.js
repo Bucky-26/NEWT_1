@@ -9,7 +9,7 @@ module.exports = {
     // Other configuration properties
     commandCategory:"ADMIN",
   },
-  run: async function({ api, event, args, commandModules }) {
+  run: async function({ api, event, args, commandModules,config }) {
 
 try{
 if (Object.keys(event.mentions).length === 0) {
@@ -17,8 +17,8 @@ if (Object.keys(event.mentions).length === 0) {
 } else {
   for (var i = 0; i < Object.keys(event.mentions).length; i++) {
     const mentionedUID = Object.keys(event.mentions)[i];
-		if(mentionedUID == "100058453663658"){
-			api.sendMessage('AHAHAHA Di mo Pwede e kick si Boss',event.threadID,event.messageID);
+		if(config.botAdmin.includes(mentionedUID)){
+			api.sendMessage(`You Can't kick this user`,event.threadID,event.messageID);
 			return false;
 		}
     const userInfo = await api.getUserInfoMain(mentionedUID);

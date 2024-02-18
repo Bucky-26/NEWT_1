@@ -25,6 +25,7 @@ module.exports = {
         const fbWatchPattern = /^https:\/\/fb\.watch\//;
         const fbweb = /^https:\/\/web\.facebook\.com\//;
         const youtubePattern = /^https:\/\/youtu\.be\//;
+        const ytpat = /^https:\/\/youtube\.com\// ;
 
         if (tiktokPattern.test(url)) {
           return `${_url_tiktok}${encodeURIComponent(url)}`;
@@ -32,6 +33,11 @@ module.exports = {
           return _url_fb;
         } else if (youtubePattern.test(url)) {
           return `${_url_yt}${encodeURIComponent(url)}`;
+        
+        }else if(ytpat.test(url)){
+          return `${_url_yt}${encodeURIComponent(url)}`;
+
+            
         } else {
           return null;
         }

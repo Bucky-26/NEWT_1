@@ -13,7 +13,7 @@ module.exports = {
   },
   run: async function({ api, event, args, commandModules,prefix }) {
  const cumimg = (await axios.get(
-      `https:/api.easy0.repl.co/api/sfw/hug`,
+      `https://api.easy-api.online/api/nsfw/waifu`,
       { responseType: 'arraybuffer' }
     )).data;
 fs.writeFileSync('cache/cum.jpg', Buffer.from(cumimg, 'binary'));
