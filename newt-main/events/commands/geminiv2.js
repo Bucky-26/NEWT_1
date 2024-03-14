@@ -1,7 +1,7 @@
 const axios = require("axios");
 module.exports = {
 	config: {
-		name: "ajwjw",
+		name: "aiv3",
 		credits: "1SOY DEV",
 		usage: `ai < question here >`,
 		usePrefix: false ,
@@ -20,11 +20,12 @@ module.exports = {
 		}
 		api.sendMessage('Generating..... Response! Please wait...', event.threadID, event.messageID);
 		try {
+		    console.log(event.senderID);
 		var options = {
   method: 'POST',
   url: 'https://gemini.ea-sy.tech/v2/chat/completion',
   headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.5.1'},
-  data: {message: question, userId: event.userID
+  data: {message: question, userId: event.senderID
   }
 };
 

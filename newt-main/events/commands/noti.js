@@ -18,7 +18,7 @@ module.exports = {
 		const senderID = event.senderID;
 		const axios = require('axios');
 		const path = require('path');
-		const admininfo = await api.getUserInfoMain(senderID);
+		const admininfo = await api.getUserInfo(senderID);
 		const adminame = admininfo[senderID].name;
 		const message = args.join(" ");
 		try {

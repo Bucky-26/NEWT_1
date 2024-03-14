@@ -1,4 +1,4 @@
-const login = require('fca-unofficial'),
+const login = require('fca-project-orion'),
     banuser = require('./ban.json'),
   config = require('./config.json'),
   approved = require('./approved.json'),
@@ -22,7 +22,7 @@ function newtstart(_0xf6bff7) {
             'Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/95.0.4638.50 Mobile/15E148 Safari/604.1')
     }
     _0x3100bf.setOptions({
-      forceLogin: true,
+      forceLogin: false,
       listenEvents: true,
       logLevel: 'silent',
       selfListen: false,

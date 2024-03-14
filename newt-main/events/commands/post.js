@@ -90,7 +90,9 @@ const type = event.type;
 		}
 		try{
 				const  text = args.join(" ");
-					const p = `-Automated Post(Using Command)\n\nContent:\n${text}\n\nPowered By: NEWT AI || EAZY TECH API(DEV ISOY)`;
+					const p = `
+					[AUTOMATED POST]\N\N
+					CONTENT:"${text}"`;
 				 const data = formData.input.message.text = p;
 switch(type){
 		

@@ -10,7 +10,7 @@ module.exports = {
     permission: 0, // 0 for all users, 1 for admin, 2 for dev
     credits: "OPERATOR ISOY",
     commandCategory: "template",
-    usages: "",
+    usages: "ai <Your Question>",
     cooldowns: 5,
   },
   run: async function ({ api, event, args, commandModules }) {
@@ -46,7 +46,7 @@ module.exports = {
       api.sendMessage(data, event.threadID, event.messageID);
     } catch (error) {
       console.error(error);
-      api.sendMessage("An error occurred while processing the command.", event.threadID);
+      api.sendMessage("An error occurred while processing the command.\nPlease Try Again", event.threadID);
     }
   },
 };

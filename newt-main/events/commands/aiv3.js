@@ -1,7 +1,7 @@
 const axios = require("axios");
 module.exports = {
 	config: {
-		name: "ai2",
+		name: "error11",
 		credits: "1SOY DEV",
 		usage: `ai < question here >`,
 		usePrefix: false ,

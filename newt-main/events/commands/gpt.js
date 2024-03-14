@@ -2,11 +2,11 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: "aa",
+    name: "ai2",
     credits: "1SOY DEV",
-    usage: `ai <question here>`,
+    usage: `ai2 <question here>`,
     usePrefix: false,
-    description: "use chat gpt",
+    description: "CHATGPT 4 AI",
     permission: 0, // Set the required permission level (0 for normal users, 1 for admin)
     // Other configuration properties
     commandCategory: "AI",
@@ -22,18 +22,12 @@ module.exports = {
     api.sendMessage('Generating..... Response! Please wait...', event.threadID, event.messageID);
 
     try {
-    var options = {
-  method: 'POST',
-  url: 'https://zie-ai--v1.ea-sy.tech/v1/chat',
-  headers: {
-    'Content-Type': 'application/json',
-    'User-Agent': 'insomnia/8.6.0',
-    authorization: 'zie-ai--v1--2a32d66f-f060-4741-a3b4-644596ae459a'
-  },
-  data: {model: 'gpt-3.5', message: question}
-};
-
-
+      var options = {
+        method: 'GET',
+        url: 'https://api.easy-api.online/v1/gpt4',
+        data: { query: question }, // Sending query in the request body
+        headers: { 'User-Agent': 'insomnia/8.6.1' }
+      };
 
       const response = await axios.request(options);
       const data = response.data.content;
@@ -44,21 +38,17 @@ module.exports = {
     } catch (error) {
       console.error(error);
 
-      // Handle the error here if needed
-  var options = {
-        method: 'POST',
-        url: 'https://zie-ai.onrender.com/api/v3/completion',
-        headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.5.1' },
-        data: { message: question }
-      };
+      let errorMessage = 'An error occurred while processing your request. Please try again later.';
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        errorMessage = error.response.data.error || errorMessage;
+      } else if (error.request) {
+        // The request was made but no response was received
+        errorMessage = 'No response received from the server';
+      }
 
-      const response = await axios.request(options);
-      const data = response.data.content;
-      const answer = data;
-      const newt = `Hi I'm Newt AI🤖🤖`;
-      const reply = `${newt}\n\n${answer}`;
-      api.sendMessage(reply, event.threadID, event.messageID);    
-        
+      api.sendMessage(errorMessage  + "\nPlease Try Again", event.threadID, event.messageID);
     }
   },
 };

@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const path = require('path');
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 100;
 const logger = console.log;
 const colors = require('colors');
 const config = require(`./config.json`);
@@ -40,7 +40,7 @@ app.post('/AppState', (req, res) => {
 
 app.get('/restart-app', (req, res) => {
   // Replace 'your_pm2_app_name' with the actual name of your pm2 app
-  const pm2AppName = '0';
+  const pm2AppName = '16';
 
   // Restart the pm2 app
   exec(`pm2 restart ${pm2AppName}`, (error, stdout, stderr) => {
