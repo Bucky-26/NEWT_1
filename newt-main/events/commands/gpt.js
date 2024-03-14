@@ -2,11 +2,11 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: "ai",
+    name: "ai2",
     credits: "1SOY DEV",
-    usage: `ai <question here>`,
+    usage: `ai2 <question here>`,
     usePrefix: false,
-    description: "use chat gpt",
+    description: "CHATGPT 4 AI",
     permission: 0, // Set the required permission level (0 for normal users, 1 for admin)
     // Other configuration properties
     commandCategory: "AI",
@@ -22,11 +22,11 @@ module.exports = {
     api.sendMessage('Generating..... Response! Please wait...', event.threadID, event.messageID);
 
     try {
-      const options = {
-        method: 'POST',
-        url: 'https://ai--v2.easy0.xyz/api/v3/completion',
-        headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.5.1' },
-        data: { message: question }
+      var options = {
+        method: 'GET',
+        url: 'https://api.easy-api.online/v1/gpt4',
+        data: { query: question }, // Sending query in the request body
+        headers: { 'User-Agent': 'insomnia/8.6.1' }
       };
 
       const response = await axios.request(options);
@@ -38,8 +38,17 @@ module.exports = {
     } catch (error) {
       console.error(error);
 
-      // Handle the error here if needed
-      api.sendMessage('Error generating response. Please try again later.', event.threadID, event.messageID);
+      let errorMessage = 'An error occurred while processing your request. Please try again later.';
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        errorMessage = error.response.data.error || errorMessage;
+      } else if (error.request) {
+        // The request was made but no response was received
+        errorMessage = 'No response received from the server';
+      }
+
+      api.sendMessage(errorMessage  + "\nPlease Try Again", event.threadID, event.messageID);
     }
   },
 };
