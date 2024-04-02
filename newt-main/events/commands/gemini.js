@@ -5,7 +5,11 @@ const path = require("path");
 module.exports = {
   config: {
     name: "ai",
+<<<<<<< HEAD
     usePrefix: false,
+=======
+    usePrefix: true,
+>>>>>>> c0c518c5cce29ef9f2d1d221548727ea639806a9
     description: "Get the URLs of the first two images when the user replies to an image.",
     permission: 0, // 0 for all users, 1 for admin, 2 for dev
     credits: "OPERATOR ISOY",
